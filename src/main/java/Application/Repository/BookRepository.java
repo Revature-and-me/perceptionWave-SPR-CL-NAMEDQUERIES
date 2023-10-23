@@ -1,7 +1,10 @@
 package Application.Repository;
 
 import Application.Model.Book;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -24,6 +27,7 @@ import java.util.List;
  *
  *     The test cases for this lab will attempt to identify the query methods you've written and run them.
  */
+@Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
     /**
@@ -50,14 +54,16 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     /**
      * TODO: Retrieve a book by its title. You may assume that titles are unique and that a single Book entity should
      * be returned, so the return type will be Book.
+     * @param title
      */
-
+    Book getBookByTitle(String title);
     /**
      * TODO: Retrieve books by their availability using their available field. The return type will be List<Book>.
      */
-
+    List<Book> getBooksByAvailable(boolean available);
     /**
      * TODO: Retrieve books by their dateAdded OR their lastDateWithdrawn.
      */
+    List<Book> getBooksByDateAddedOrLastDateWithdrawn(Timestamp dateAdded, Timestamp lastDateWithdrawn);
 
 }
